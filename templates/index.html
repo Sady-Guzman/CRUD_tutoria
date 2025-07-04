@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Autos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Lista de autos</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th><th>Marca</th><th>Modelo</th><th>Año</th><th>Precio</th><th>Color</th><th>Disponible</th><th>Acciones</th>
+        </tr>
+        {% for auto in autos %}
+        <tr>
+            <td>{{auto.id}}</td>
+            <td>{{auto.marca}}</td>
+            <td>{{auto.modelo}}</td>
+            <td>{{auto.anio}}</td>
+            <td>{{auto.precio}}</td>
+            <td>{{auto.color}}</td>
+            <td>{{auto.disponible}}</td>
+            <td>
+                <a href="/edit/{{auto.id}}">Editar</a> |
+                <a href="/delete/{{auto.id}}">Borrar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Agregar auto</h2>
+    <form method="post" action="/add">
+        Marca: <input name="marca"><br>
+        Modelo: <input name="modelo"><br>
+        Año: <input name="anio"><br>
+        Precio: <input name="precio"><br>
+        Color: <input name="color"><br>
+        Disponible: <input name="disponible"><br>
+        <input type="submit" value="Agregar">
+    </form>
+</body>
+</html>
